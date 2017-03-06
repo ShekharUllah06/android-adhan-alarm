@@ -83,7 +83,7 @@ public abstract class BaseActivity  extends ActionBarActivity implements android
 			break;
 		case R.id.menu_item_report:
 			
-			url = "https://github.com/ShekharUllah06/android-simple-calculator/issues";
+			url = "https://github.com/ShekharUllah06/android-adhan-alarm/issues";
 			intent = new Intent(Intent.ACTION_VIEW);
 			intent.setData(Uri.parse(url));
 			try {
