@@ -1,4 +1,4 @@
-/* Copyright 2014 Sheldon Neilson www.neilson.co.za
+/* Copyright 2017 Miah Abdullah Shekhar http://shekhar.dev-station.com/
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,19 +19,18 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
 import android.widget.Toast;
 
-public abstract class BaseActivity  extends ActionBarActivity implements android.view.View.OnClickListener{
+public abstract class BaseActivity  extends AppCompatActivity implements android.view.View.OnClickListener{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		try {
 	        ViewConfiguration config = ViewConfiguration.get(this);	        
 	        Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
@@ -40,13 +39,12 @@ public abstract class BaseActivity  extends ActionBarActivity implements android
 	            menuKeyField.setBoolean(config, false);
 	        }
 	    } catch (Exception ex) {
-	        // Ignore
+
 	    }
 	}
 	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {		
-		// Inflate the menu items for use in the action bar
+	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.menu, menu);
 	    return super.onCreateOptionsMenu(menu);
@@ -62,7 +60,7 @@ public abstract class BaseActivity  extends ActionBarActivity implements android
 			startActivity(newAlarmIntent);
 			break;
 		case R.id.menu_item_rate:
-			url = "market://details?id=" + getPackageName();
+			url = "https://play.google.com/store/apps/details?id=" + getPackageName();
 			intent = new Intent(Intent.ACTION_VIEW);
 			intent.setData(Uri.parse(url));
 			try {
@@ -91,30 +89,6 @@ public abstract class BaseActivity  extends ActionBarActivity implements android
 			} catch (ActivityNotFoundException e) {
 				Toast.makeText(this, "Couldn't launch the bug reporting website", Toast.LENGTH_LONG).show();
 			}
-			
-			/*
-			Intent send = new Intent(Intent.ACTION_SENDTO);
-			String uriText;
-
-			String emailAddress = "dontusemyemailaddress@yourdomain.com";
-			String subject = R.string.app_name + " Bug Report";
-			String body = "Debug:";
-			body += "\n OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
-			body += "\n OS API Level: " + android.os.Build.VERSION.SDK_INT;
-			body += "\n Device: " + android.os.Build.DEVICE;
-			body += "\n Model (and Product): " + android.os.Build.MODEL + " (" + android.os.Build.PRODUCT + ")";
-			body += "\n Screen Width: " + getWindow().getWindowManager().getDefaultDisplay().getWidth();
-			body += "\n Screen Height: " + getWindow().getWindowManager().getDefaultDisplay().getHeight();
-			body += "\n Hardware Keyboard Present: " + (getResources().getConfiguration().keyboard != Configuration.KEYBOARD_NOKEYS);
-
-			uriText = "mailto:" + emailAddress + "?subject=" + subject + "&body=" + body;
-
-			uriText = uriText.replace(" ", "%20");
-			Uri emalUri = Uri.parse(uriText);
-
-			send.setData(emalUri);
-			startActivity(Intent.createChooser(send, "Send mail..."));
-			*/
 			break;
 		}
 		return super.onOptionsItemSelected(item);
