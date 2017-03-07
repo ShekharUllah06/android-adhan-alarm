@@ -144,8 +144,10 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 						} catch (Exception e) {
 
 						}
+						//android.os.Process.killProcess(android.os.Process.myPid());
 						finish(); // finish current activity
-						System.exit(0);
+						//System.exit(0);
+
 					}
 				});
 
@@ -268,6 +270,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 
 			}
 			this.finish();
+			//System.exit(0);
 		}
 
 
