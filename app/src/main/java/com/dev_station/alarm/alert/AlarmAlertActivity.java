@@ -64,45 +64,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 		alarm = (Alarm) bundle.getSerializable("alarm");
 
 		this.setTitle(alarm.getAlarmName());
-		//this.setTitle("Test");
 
-		/*switch (alarm.getDifficulty()) {
-		case EASY:
-			mathProblem = new MathProblem(3);
-			break;
-		case MEDIUM:
-			mathProblem = new MathProblem(4);
-			break;
-		case HARD:
-			mathProblem = new MathProblem(5);
-			break;
-		}
-		//mathProblem = new MathProblem(3);
-		answerString = String.valueOf(mathProblem.getAnswer());
-		if (answerString.endsWith(".0")) {
-			answerString = answerString.substring(0, answerString.length() - 2);
-		}
-
-		problemView = (TextView) findViewById(R.id.textView1);
-		problemView.setText(mathProblem.toString());
-
-		answerView = (TextView) findViewById(R.id.textView2);
-		answerView.setText("= ?");
-
-		((Button) findViewById(R.id.Button0)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button1)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button2)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button3)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button4)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button5)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button6)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button7)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button8)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button9)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button_clear)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button_decimal)).setOnClickListener(this);
-		((Button) findViewById(R.id.Button_minus)).setOnClickListener(this);
-		*/
 
 		((Button) findViewById(R.id.Button_clear)).setOnClickListener(this);
 
@@ -138,7 +100,6 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 		telephonyManager.listen(phoneStateListener,
 				PhoneStateListener.LISTEN_CALL_STATE);
 
-		// Toast.makeText(this, answerString, Toast.LENGTH_LONG).show();
 
 		startAlarm(alarm.getAlarmName());
 
@@ -161,19 +122,11 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 				vibrator.vibrate(pattern, 0);
 			}
 			try {
-				//mediaPlayer.setVolume(1.0f, 1.0f);
-				/*mediaPlayer.setDataSource(this,
-						Uri.parse(alarm.getAlarmTonePath()));
-				mediaPlayer.setDataSource(this,
-						Uri.parse(alarm.getAlarmTonePath()));
-				mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
-				*/
-				//mediaPlayer.setLooping(true);
-				//mediaPlayer.prepare();
+
 				if(alarmName.equalsIgnoreCase("Fazr")){
-					mediaPlayer=MediaPlayer.create(AlarmAlertActivity.this,R.raw.azan1);
+					mediaPlayer=MediaPlayer.create(AlarmAlertActivity.this,R.raw.adhan_fajr);
 				}else{
-					mediaPlayer=MediaPlayer.create(AlarmAlertActivity.this,R.raw.azan1);
+					mediaPlayer=MediaPlayer.create(AlarmAlertActivity.this,R.raw.adhan);
 				}
 				mediaPlayer.start();
 				mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -192,6 +145,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 
 						}
 						finish(); // finish current activity
+						System.exit(0);
 					}
 				});
 
@@ -200,11 +154,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 				alarmActive = false;
 			}
 		}
-		//mediaPlayer = new MediaPlayer();
 
-		//mediaPlayer=MediaPlayer.create(AlarmAlertActivity.this,R.raw.azan1);
-
-		//mediaPlayer.start();
 
 	}
 
